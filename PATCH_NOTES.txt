@@ -1,0 +1,17 @@
+PATCH NOTES
+
+The original UDP sender, UDP receiver, Mininet topology, and project support
+files are retained. controller/controller.py has been patched.
+
+Changes:
+- Replaces the priority-0 OFPP_NORMAL rule with an explicit drop for unmatched
+  packets. This prevents unknown/broadcast traffic from being normally flooded
+  around the topology's Layer-2 cycle.
+- Changes flow-stat polling from 1 second to 5 seconds to reduce controller and
+  terminal load.
+- Separates h2 and h3 IPv4/ARP return rules at s6 using ingress port and source.
+- Makes failover return rules specific to h2, so h3's route is not overwritten.
+
+This is a reasoned correction to the code found in the uploaded ZIP, not a
+guarantee against all VM/hypervisor failures. Test the small topology first,
+then the six-switch topology.

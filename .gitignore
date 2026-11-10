@@ -1,0 +1,8 @@
+osken-env/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.log
+*.swp
+.DS_Store
